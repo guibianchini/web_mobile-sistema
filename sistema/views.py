@@ -14,8 +14,8 @@ class Login(View):
         if not request.user.is_authenticated:
             return render(request, 'autenticacao.html', contexto)
         else:
-            return HttpResponse('Usuário já está autenticado!')
-            # return render(request, 'veiculos.html', contexto)
+            # return HttpResponse('Usuário já está autenticado!')
+            return render(request, 'veiculos.html', contexto)
     
     def post(self, request):
         # Obtém as credenciais de autenticação do formulário
@@ -32,8 +32,8 @@ class Login(View):
             # Verifica se o usuário ainda está ativo no sistema
             if user.is_active:
                     login(request, user)
-                    return HttpResponse('Login efetuado com sucesso!')
-                    # return redirect("/veiculos")
+                    # return HttpResponse('Login efetuado com sucesso!')
+                    return redirect("/veiculo")
 
             return render(request, 'autenticacao.html', {'mensagem': 'Usuário inativo!'})
             

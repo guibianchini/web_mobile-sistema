@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    {% load static %} {% load bootstrap5 %} {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8" />
+    <title>{% block title %}Desenvolvimento web-mobile{% endblock %}</title>
+  </head>
+  <body class="bg-light">
+    <div class="container d-flex flex-column my-5">
+      {% if user.is_authenticated %}
+      <div
+        id="menu-superior"
+        class="d-flex justify-content-between align-items-center mb-2"
+      >
+        {% block menu-superior %}
+        <div class="d-flex flex-row gap-2">
+          <button class="btn btn-info text-white fw-bolder">
+            <a>Página Inicial</a>
+          </button>
+          <button class="btn btn-outline-info"><a>Veículos</a></button>
+          <!-- <button class="btn btn-outline-info"><a>Login</a></button> -->
+        </div>
+        <div>
+          <input class="form-control" type="text" placeholder="Pesquisar" />
+        </div>
+        <button
+          class="btn btn-outline-info dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+        Olá, {{ user }}
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/logout">Sair</a></li>
+        </ul>
+        {% endblock %}
+      </div>
+      {% endif %}
+      <div id="conteudo" class="card rounded py-5">
+        {% block conteudo %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
