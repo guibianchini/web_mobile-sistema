@@ -2,8 +2,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.conf import settings
+import logging
+
+logger = logging.getLogger('sistema')
 
 class Login(View):
     """
@@ -15,15 +18,16 @@ class Login(View):
             return render(request, 'autenticacao.html', contexto)
         else:
             # return HttpResponse('Usuário já está autenticado!')
-            return render(request, 'veiculos.html', contexto)
+            # return render(request, 'veiculos.html', contexto)
+            return redirect("/veiculo")
     
     def post(self, request):
         # Obtém as credenciais de autenticação do formulário
         usuario = request.POST.get('usuario', None)
         senha = request.POST.get('senha', None)
 
-        # logger.info('Usuario: {}'.format(usuario))
-        # logger.info('Senha: {}'.format(senha))
+        logger.info('Usuario: {}'.format(usuario))
+        logger.info('Senha: {}'.format(senha))
 
         # Verifique se as credenciais de autenticação sao validas
         user = authenticate(request,username=usuario, password=senha)

@@ -3,8 +3,8 @@ from django.urls import path, include
 from sistema.views import Login, Logout
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', Login.as_view(), name = 'index'),
     path('logout/', Logout.as_view(), name = 'logout'),
-    path('veiculo/', include('veiculo.urls'), name='veiculo'),
-    path('admin/', admin.site.urls)
+    path('veiculo/', include('veiculo.urls'), name='veiculo')
 ]
