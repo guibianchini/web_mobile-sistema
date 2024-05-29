@@ -1,13 +1,17 @@
 from django import forms
-from veiculo.models import Veiculo
+from anuncio.models import Anuncio
 
 
-class FormularioVeiculo(forms.ModelForm):
+class FormularioAnuncio(forms.ModelForm):
+
+    """
+    Formulario para o model Anuncio
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
             visible.field.widget.attrs['placeholder'] = visible.field.label
     class Meta():
-        model = Veiculo
+        model = Anuncio
         exclude = []

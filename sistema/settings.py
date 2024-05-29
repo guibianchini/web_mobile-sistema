@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap5',
     'veiculo.apps.VeiculoConfig',
+    'anuncio.apps.AnuncioConfig',
     'rest_framework',
     'rest_framework.authtoken',
 ]
