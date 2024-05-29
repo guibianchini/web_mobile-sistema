@@ -19,3 +19,10 @@ class Veiculo(models.Model):
             self.ano,
             self.get_cor_display()
         )
+
+    def anos_de_uso(self):
+        return datetime.now().year - self.ano
+
+    @property
+    def veiculo_novo(self):
+        return self.ano == datetime.now().year
